@@ -1,4 +1,5 @@
 
+'use strict'
 const TASK_COUNT = 3;
 
 const createSiteInfoTemplate = () => {
