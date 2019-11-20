@@ -1,5 +1,5 @@
 
-'use strict'
+'use strict';
 const TASK_COUNT = 3;
 
 const createSiteInfoTemplate = () => {
@@ -332,7 +332,7 @@ const createEventListItemTemplate = () => {
 };
 
 const siteHeaderElement = document.querySelector(`.trip-main`);
-const siteInfoElement = siteHeaderElement.querySelector(`.trip-info`)
+const siteInfoElement = siteHeaderElement.querySelector(`.trip-info`);
 const siteControlElement = siteHeaderElement.querySelector(`.trip-controls`);
 
 
@@ -347,13 +347,13 @@ render(siteControlElement, createSiteFilterTemplate());
 const siteEventElement = document.querySelector(`.trip-events`);
 render(siteEventElement, createSiteSortTemplate());
 render(siteEventElement, createSiteAddFormTemplate());
-render(siteEventElement, createDayListTemplate())
+render(siteEventElement, createDayListTemplate());
 
 const siteDayListElement = siteEventElement.querySelector(`.trip-days`);
 render(siteDayListElement, createDayListItemTemplate());
 
 const siteDayListItemElement = siteDayListElement.querySelector(`.trip-days__item`);
-render (siteDayListItemElement, createEventListTemplate());
+render(siteDayListItemElement, createEventListTemplate());
 
 const siteEventListElement = siteDayListElement.querySelector(`.trip-events__list`);
 const repeat = (count, fn) => {
@@ -361,5 +361,5 @@ const repeat = (count, fn) => {
 };
 
 repeat(TASK_COUNT, () => {
-  render(siteEventListElement , createEventListItemTemplate());
+  render(siteEventListElement, createEventListItemTemplate());
 });
