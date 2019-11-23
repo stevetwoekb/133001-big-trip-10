@@ -332,7 +332,7 @@ const createEventListItemTemplate = () => {
 };
 
 const siteHeaderElement = document.querySelector(`.trip-main`);
-const siteInfoElement = siteHeaderElement.querySelector(`.trip-info`);
+const siteInfoElement = siteHeaderElement.querySelector(`.trip-info`)
 const siteControlElement = siteHeaderElement.querySelector(`.trip-controls`);
 
 
