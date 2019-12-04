@@ -6,7 +6,6 @@ import {createSiteSortTemplate} from './components/site-sort.js';
 import {createSiteAddFormTemplate} from './components/site-add-form.js';
 import {createDayListTemplate} from './components/day-list.js';
 import {createDayListItemTemplate} from './components/day-list-item.js';
-import {createEventListTemplate} from './components/event-list.js';
 import {createEventListItemTemplate} from './components/event-list-item.js';
 import {generateDaysList} from './mock/day-list.js';
 import {generateFilters} from './mock/filter.js';
@@ -39,7 +38,5 @@ render(siteDayListElement, createDayListItemTemplate(eventDaysList));
 
 const siteDayListItemElement = siteDayListElement.querySelectorAll(`.trip-days__item`);
 siteDayListItemElement.forEach((elem, i) => {
-  render(elem, createEventListTemplate());
-  const siteEventListElement = elem.querySelector(`.trip-events__list`);
-  render(siteEventListElement, createEventListItemTemplate(eventDaysList[i].event));
+  render(elem, createEventListItemTemplate(eventDaysList[i].events));
 });

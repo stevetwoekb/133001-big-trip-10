@@ -11,26 +11,27 @@ const getRandomDate = () => {
   return targetDate;
 };
 
-/** создаем объект списока */
+/** создаем объект списка */
 
 const generateDayList = () => {
   const currentDate = getRandomDate();
+  currentDate.setHours(0, 0, 0, 0);
   const randomEventCount = getRandomIntegerNumber(2, 5);
-  const events = [];
+  const listItem = [];
   for (let i = 0; i < randomEventCount; i++) {
-    events.push(generateEvent(currentDate));
+    listItem.push(generateEvent(currentDate));
   }
   return {
     date: currentDate,
-    event: events
+    events: listItem
   };
 };
 
 const generateDaysList = (count) => {
   return new Array(count)
     .fill(``)
-    .map(generateDayList);
+    .map(generateDayList).sort((a, b) => a.date - b.date);
 };
 
 
-export {generateDayList, generateDaysList};
+export {generateDaysList};

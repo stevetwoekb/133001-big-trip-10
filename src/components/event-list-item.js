@@ -1,3 +1,4 @@
+import {castTimeFormat} from '../utils.js';
 
 const createOffersMarkup = (offer) => {
   return (
@@ -14,7 +15,8 @@ const createOffersMarkup = (offer) => {
   );
 };
 const createEventListItemMarkup = (item) => {
-
+  const differenceDateMs = item.dateEnd - item.dateStart;
+  const differenceDate = new Date(differenceDateMs);
   const offser = item.offers.map((i) => {
     return createOffersMarkup(i);
   });
@@ -29,11 +31,11 @@ const createEventListItemMarkup = (item) => {
 
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="2019-03-19T10:00">10:00</time>
+          <time class="event__start-time" datetime="2019-03-19T10:00">${castTimeFormat(item.dateStart.getHours())}:${castTimeFormat(item.dateStart.getMinutes())}</time>
           &mdash;
-          <time class="event__end-time" datetime="2019-03-19T11:00">11:00</time>
+          <time class="event__end-time" datetime="2019-03-19T11:00">${castTimeFormat(item.dateEnd.getHours())}:${castTimeFormat(item.dateEnd.getMinutes())}</time>
         </p>
-        <p class="event__duration">1H</p>
+        <p class="event__duration">${castTimeFormat(differenceDate.getHours())}H ${castTimeFormat(differenceDate.getMinutes())}M </p>
       </div>
 
       <p class="event__price">
@@ -56,7 +58,9 @@ export const createEventListItemTemplate = (events) => {
   const eventListItemMarkup = eventListItem.map((it) => createEventListItemMarkup(it)).join(`\n`);
   return (
     `
-      ${eventListItemMarkup}
+    <ul class="trip-events__list">
+    ${eventListItemMarkup}
+    </ul>
     `
   );
 };

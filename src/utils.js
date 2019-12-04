@@ -18,4 +18,4 @@ export const formatTime = (date) => {
 };
 
 
-export {getRandomIntegerNumber};
+export {getRandomIntegerNumber, castTimeFormat};
