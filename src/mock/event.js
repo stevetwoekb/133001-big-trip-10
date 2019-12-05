@@ -14,7 +14,7 @@ const types = [
   `Restaurant`,
 ];
 
-const citys = [
+const cities = [
   `Ganeva`,
   `Moscow`,
   `Yekaterinburg`,
@@ -111,7 +111,7 @@ const generateEvent = (fullDate) => {
   return {
     type: getType,
     icon: generateIcon(getType),
-    city: getRandomArrayItem(citys),
+    city: getRandomArrayItem(cities),
     photos: generatePhotos(),
     description: generateDescription(),
     price: getRandomArrayItem(generatePrices()),

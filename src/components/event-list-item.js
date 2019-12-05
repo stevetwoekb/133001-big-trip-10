@@ -1,5 +1,5 @@
 import {castTimeFormat} from '../utils.js';
-
+import {totalPrice} from '../mock/total-price';
 const createOffersMarkup = (offer) => {
   return (
     `
@@ -15,9 +15,10 @@ const createOffersMarkup = (offer) => {
   );
 };
 const createEventListItemMarkup = (item) => {
+  totalPrice(item.price);
   const differenceDateMs = item.dateEnd - item.dateStart;
   const differenceDate = new Date(differenceDateMs);
-  const offser = item.offers.map((i) => {
+  const offers = item.offers.map((i) => {
     return createOffersMarkup(i);
   });
   return (
@@ -41,7 +42,7 @@ const createEventListItemMarkup = (item) => {
       <p class="event__price">
         &euro;&nbsp;<span class="event__price-value">${item.price}</span>
       </p>
-      ${offser}
+      ${offers}
 
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>
