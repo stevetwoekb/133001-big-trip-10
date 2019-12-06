@@ -1,4 +1,4 @@
-import {getRandomIntegerNumber} from '../utils.js';
+import {getRandomIntegerNumber, getRandomDate} from '../utils.js';
 const descriptionText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`;
 
 const types = [
@@ -35,8 +35,6 @@ const offerPrice = [
   `2`,
   `9`
 ];
-
-const dates = [];
 
 const getRandomArrayItem = (array) => {
   const randomIndex = getRandomIntegerNumber(0, array.length - 1);
@@ -91,23 +89,8 @@ const generatePhotos = () => {
   return photosArray;
 };
 
-const generateDate = (date) => {
-  for (let i = 0; i < 2; i++) {
-    date.setHours(getRandomIntegerNumber(0, 24));
-    const minutes = getRandomIntegerNumber(0, 60);
-    const generatedMinutes = ((Math.floor((minutes - 1) / 5) + 1) * 5) % 60;
-    const total = date.setMinutes(generatedMinutes);
-    dates.push(total);
-  }
-};
-
-
-const generateEvent = (fullDate) => {
+const generateEvent = () => {
   const getType = generateType();
-  generateDate(fullDate);
-  dates.sort((a, b) => a - b);
-  const startDate = new Date(dates[0]);
-  const endDate = new Date(dates[1]);
   return {
     type: getType,
     icon: generateIcon(getType),
@@ -116,16 +99,9 @@ const generateEvent = (fullDate) => {
     description: generateDescription(),
     price: getRandomArrayItem(generatePrices()),
     offers: generateOffers(),
-    dateStart: startDate,
-    dateEnd: endDate
+    dateStart: getRandomDate(),
+    dateEnd: getRandomDate()
   };
 };
 
-
-const generateEvents = (count) => {
-  return new Array(count)
-    .fill(``)
-    .map(generateEvent);
-};
-
-export {generateEvent, generateEvents};
+export {generateEvent};

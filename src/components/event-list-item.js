@@ -15,7 +15,7 @@ const createOffersMarkup = (offer) => {
   );
 };
 const createEventListItemMarkup = (item) => {
-  totalPrice(item.price);
+  // totalPrice(1);
   const differenceDateMs = item.dateEnd - item.dateStart;
   const differenceDate = new Date(differenceDateMs);
   const offers = item.offers.map((i) => {
@@ -36,7 +36,7 @@ const createEventListItemMarkup = (item) => {
           &mdash;
           <time class="event__end-time" datetime="2019-03-19T11:00">${castTimeFormat(item.dateEnd.getHours())}:${castTimeFormat(item.dateEnd.getMinutes())}</time>
         </p>
-        <p class="event__duration">${castTimeFormat(differenceDate.getHours())}H ${castTimeFormat(differenceDate.getMinutes())}M </p>
+        <p class="event__duration">${castTimeFormat(differenceDate.getDay())}D ${castTimeFormat(differenceDate.getHours())}H ${castTimeFormat(differenceDate.getMinutes())}M </p>
       </div>
 
       <p class="event__price">
@@ -55,8 +55,7 @@ const createEventListItemMarkup = (item) => {
 
 
 export const createEventListItemTemplate = (events) => {
-  const eventListItem = events;
-  const eventListItemMarkup = eventListItem.map((it) => createEventListItemMarkup(it)).join(`\n`);
+  const eventListItemMarkup = events.map((it) => createEventListItemMarkup(it)).join(`\n`);
   return (
     `
     <ul class="trip-events__list">

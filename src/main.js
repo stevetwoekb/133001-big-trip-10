@@ -10,7 +10,7 @@ import {createEventListItemTemplate} from './components/event-list-item.js';
 import {generateDaysList} from './mock/day-list.js';
 import {generateFilters} from './mock/filter.js';
 import {generateMenu} from './mock/menu.js';
-import {getTotalPrice} from './mock/total-price.js';
+import {setTotalCoast, getTotalCoast} from './mock/total-price.js';
 
 // console.log(generateDaysList(3));
 const DAY_COUNT = 4;
@@ -40,5 +40,5 @@ const siteDayListItemElement = siteDayListElement.querySelectorAll(`.trip-days__
 siteDayListItemElement.forEach((elem, i) => {
   render(elem, createEventListItemTemplate(eventDaysList[i].events));
 });
-const totalPrice = getTotalPrice();
-render(siteInfoElement, createSiteInfoTemplate(totalPrice), `afterbegin`);
+const totalCoast = getTotalCoast(eventDaysList);
+render(siteInfoElement, createSiteInfoTemplate(totalCoast), `afterbegin`);

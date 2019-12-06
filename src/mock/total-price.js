@@ -1,14 +1,13 @@
-const prices = [];
-const totalPrice = (value) => {
-  prices.push(value);
+// const totalPrice = 0;
+const getTotalCoast = (array) => {
+  let totalCoast = 0;
+  for (let elems of array) {
+    for (let elem of elems.events) {
+      totalCoast += elem.price;
+    }
+  }
+  return totalCoast;
 };
 
-const getTotalPrice = () => {
-  let sum = 0;
-  prices.forEach((it) => {
-    sum += it;
-  });
-  return sum;
-};
 
-export {totalPrice, getTotalPrice};
+export {getTotalCoast};

@@ -17,5 +17,17 @@ export const formatTime = (date) => {
   return `${hours}:${minutes} ${interval}`;
 };
 
+const getRandomDate = () => {
+  const randomDate = new Date();
+  const sign = Math.random() > 0.5 ? 1 : -1;
+  const diffValue = sign * getRandomIntegerNumber(0, 2);
+  const hours = getRandomIntegerNumber(0, 23);
+  const minutes = getRandomIntegerNumber(0, 59);
+  randomDate.setDate(randomDate.getDate() + diffValue);
+  randomDate.setHours(hours, minutes);
 
-export {getRandomIntegerNumber, castTimeFormat};
+  return randomDate;
+};
+
+
+export {getRandomIntegerNumber, castTimeFormat, getRandomDate};
