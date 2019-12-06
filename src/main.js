@@ -10,7 +10,7 @@ import {createEventListItemTemplate} from './components/event-list-item.js';
 import {generateDaysList} from './mock/day-list.js';
 import {generateFilters} from './mock/filter.js';
 import {generateMenu} from './mock/menu.js';
-import {setTotalCoast, getTotalCoast} from './mock/total-price.js';
+import {getTotalCoast} from './mock/total-price.js';
 
 // console.log(generateDaysList(3));
 const DAY_COUNT = 4;

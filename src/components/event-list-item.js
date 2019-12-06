@@ -1,5 +1,4 @@
 import {castTimeFormat} from '../utils.js';
-import {totalPrice} from '../mock/total-price';
 const createOffersMarkup = (offer) => {
   return (
     `
