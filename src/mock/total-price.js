@@ -1,10 +1,7 @@
-// const totalPrice = 0;
 const getTotalCoast = (array) => {
   let totalCoast = 0;
-  for (let elems of array) {
-    for (let elem of elems.events) {
-      totalCoast += elem.price;
-    }
+  for (const elem of array) {
+    totalCoast += elem;
   }
   return totalCoast;
 };

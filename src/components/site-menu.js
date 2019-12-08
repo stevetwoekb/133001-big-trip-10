@@ -1,20 +1,30 @@
-const createMenurMarkup = (menu, isChecked) => {
-  const {title} = menu;
+import {createElement} from '../utils.js';
 
+const createSiteMenuTemplate = (menuItem) => {
   return (
-    `
-    <a class="trip-tabs__btn  ${isChecked ? `trip-tabs__btn--active` : ``}" href="#">${title}</a>
-    `
+    `<a class="trip-tabs__btn href="#">${menuItem.title}</a>`
   );
 };
 
-export const createSiteMenuTemplate = (menuItems) => {
-  const menuMarkup = menuItems.map((it, i) => createMenurMarkup(it, i === 0)).join(`\n`);
-  return (
-    `
-    <nav class="trip-controls__trip-tabs  trip-tabs">
-    ${menuMarkup}
-    </nav>
-    `
-  );
-};
+export default class SiteMenuComponent {
+  constructor(menuItem) {
+    this._menuItem = menuItem;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createSiteMenuTemplate(this._menuItem);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

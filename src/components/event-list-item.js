@@ -1,4 +1,4 @@
-import {castTimeFormat} from '../utils.js';
+import {castTimeFormat, createElement} from '../utils.js';
 const createOffersMarkup = (offer) => {
   return (
     `
@@ -13,35 +13,31 @@ const createOffersMarkup = (offer) => {
     `
   );
 };
-const createEventListItemMarkup = (item) => {
-  // totalPrice(1);
-  const differenceDateMs = item.dateEnd - item.dateStart;
+const createEventListItemTemplate = (event) => {
+  const differenceDateMs = event.dateEnd - event.dateStart;
   const differenceDate = new Date(differenceDateMs);
-  const offers = item.offers.map((i) => {
-    return createOffersMarkup(i);
-  });
   return (
     `
     <li class="trip-events__item">
     <div class="event">
       <div class="event__type">
-        <img class="event__type-icon" width="42" height="42" src="${item.icon}" alt="Event type icon">
+        <img class="event__type-icon" width="42" height="42" src="${event.icon}" alt="Event type icon">
       </div>
-      <h3 class="event__title">${item.type} to ${item.city}</h3>
+      <h3 class="event__title">${event.type} to ${event.city}</h3>
 
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="2019-03-19T10:00">${castTimeFormat(item.dateStart.getHours())}:${castTimeFormat(item.dateStart.getMinutes())}</time>
+          <time class="event__start-time" datetime="2019-03-19T10:00">${castTimeFormat(event.dateStart.getHours())}:${castTimeFormat(event.dateStart.getMinutes())}</time>
           &mdash;
-          <time class="event__end-time" datetime="2019-03-19T11:00">${castTimeFormat(item.dateEnd.getHours())}:${castTimeFormat(item.dateEnd.getMinutes())}</time>
+          <time class="event__end-time" datetime="2019-03-19T11:00">${castTimeFormat(event.dateEnd.getHours())}:${castTimeFormat(event.dateEnd.getMinutes())}</time>
         </p>
         <p class="event__duration">${castTimeFormat(differenceDate.getDay())}D ${castTimeFormat(differenceDate.getHours())}H ${castTimeFormat(differenceDate.getMinutes())}M </p>
       </div>
 
       <p class="event__price">
-        &euro;&nbsp;<span class="event__price-value">${item.price}</span>
+        &euro;&nbsp;<span class="event__price-value">${event.price}</span>
       </p>
-      ${offers}
+      ${event.offers.map(createOffersMarkup)}
 
       <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>
@@ -52,14 +48,27 @@ const createEventListItemMarkup = (item) => {
   );
 };
 
+export default class EventListItemComponent {
 
-export const createEventListItemTemplate = (events) => {
-  const eventListItemMarkup = events.map((it) => createEventListItemMarkup(it)).join(`\n`);
-  return (
-    `
-    <ul class="trip-events__list">
-    ${eventListItemMarkup}
-    </ul>
-    `
-  );
-};
+  constructor(event) {
+    this._event = event;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createEventListItemTemplate(this._event);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
