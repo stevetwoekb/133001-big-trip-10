@@ -36,7 +36,7 @@ const createSiteSortTemplate = () => {
   );
 };
 
-export default class SiteSortComponent {
+export default class SiteSort {
   constructor() {
     this._element = null;
   }

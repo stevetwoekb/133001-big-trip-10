@@ -1,4 +1,4 @@
-import {createElement} from '../utils.js';
+import {createElement, castTimeFormat} from '../utils.js';
 
 const createOfferMarkup = (offer) => {
   return (
@@ -22,10 +22,10 @@ const createPhotosMarkup = (photo) => {
 };
 
 const createEventListItemTemplate = (event) => {
-  const startDate = `${event.dateStart.getDate()}/${event.dateStart.getMonth() + 1}/${event.dateStart.getFullYear().toString().slice(2)}`;
-  const startDateTime = `${event.dateStart.getHours()}: ${event.dateStart.getMinutes()}`;
-  const EndDate = `${event.dateEnd.getDate()}/${event.dateEnd.getMonth() + 1}/${event.dateEnd.getFullYear().toString().slice(2)}`;
-  const endDateTime = `${event.dateEnd.getHours()}: ${event.dateEnd.getMinutes()}`;
+  const startDate = `${castTimeFormat(event.dateStart.getDate())}/${castTimeFormat(event.dateStart.getMonth() + 1)}/${event.dateStart.getFullYear().toString().slice(2)}`;
+  const startDateTime = `${castTimeFormat(event.dateStart.getHours())}:${castTimeFormat(event.dateStart.getMinutes())}`;
+  const EndDate = `${castTimeFormat(event.dateEnd.getDate())}/${castTimeFormat(event.dateEnd.getMonth() + 1)}/${event.dateEnd.getFullYear().toString().slice(2)}`;
+  const endDateTime = `${castTimeFormat(event.dateEnd.getHours())}:${castTimeFormat(event.dateEnd.getMinutes())}`;
   return (
     `
     <li class="trip-events__item">
@@ -174,7 +174,7 @@ const createEventListItemTemplate = (event) => {
   );
 };
 
-export default class EventListItemEditComponent {
+export default class EventListItemEdit {
 
   constructor(events) {
     this._events = events;

@@ -31,7 +31,7 @@ const createDayListItemTemplate = (item) => {
   );
 };
 
-export default class DayListItemComponent {
+export default class DayListItem {
 
   constructor(item) {
     this._item = item;

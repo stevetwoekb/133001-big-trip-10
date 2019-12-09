@@ -48,7 +48,7 @@ const createEventListItemTemplate = (event) => {
   );
 };
 
-export default class EventListItemComponent {
+export default class EventListItem {
 
   constructor(event) {
     this._event = event;

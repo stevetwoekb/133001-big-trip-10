@@ -21,7 +21,7 @@ const createSiteInfoTemplate = (menuItems) => {
   );
 };
 
-export default class SiteFilterComponent {
+export default class SiteFilter {
   constructor(menuItems) {
     this._menuItems = menuItems;
     this._element = null;

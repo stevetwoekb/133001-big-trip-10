@@ -17,7 +17,7 @@ const createSiteInfoTemplate = (price) => {
 };
 
 
-export default class SiteInfoComponent {
+export default class SiteInfo {
 
   constructor(price) {
     this._price = price;
