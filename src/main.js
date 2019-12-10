@@ -35,14 +35,16 @@ days.forEach((day) => {
     const eventListItem = new EventListItem(event);
     const eventListItemEdit = new EventListItemEdit(event);
     const editButton = eventListItem.getElement().querySelector(`.event__rollup-btn`);
-    const editForm = eventsList.querySelector(`.event--edit`);
+    const editForm = eventListItemEdit.getElement().querySelector(`.event--edit`);
+    const onSubmitForm = () => {
+      event.preventDefault();
+      eventsList.replaceChild(eventListItem.getElement(), eventListItemEdit.getElement());
+      editForm.removeEventListener(`submit`, onSubmitForm);
+    };
     const onClickButton = () => {
       document.addEventListener(`keydown`, onEscapeKeyDown);
       eventsList.replaceChild(eventListItemEdit.getElement(), eventListItem.getElement());
-      editForm.addEventListener(`submit`, () => {
-        eventsList.replaceChild(eventListItem.getElement(), eventListItemEdit.getElement());
-        removeEventListener(onClickButton);
-      });
+      editForm.addEventListener(`submit`, onSubmitForm);
     };
     editButton.addEventListener(`click`, onClickButton);
     const onEscapeKeyDown = (evt) => {
