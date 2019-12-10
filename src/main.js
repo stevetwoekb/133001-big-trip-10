@@ -36,8 +36,8 @@ days.forEach((day) => {
     const eventListItemEdit = new EventListItemEdit(event);
     const editButton = eventListItem.getElement().querySelector(`.event__rollup-btn`);
     const editForm = eventListItemEdit.getElement().querySelector(`.event--edit`);
-    const onSubmitForm = () => {
-      event.preventDefault();
+    const onSubmitForm = (evt) => {
+      evt.preventDefault();
       eventsList.replaceChild(eventListItem.getElement(), eventListItemEdit.getElement());
       editForm.removeEventListener(`submit`, onSubmitForm);
     };
