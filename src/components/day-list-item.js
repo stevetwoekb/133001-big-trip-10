@@ -1,3 +1,4 @@
+import {createElement} from '../utils.js';
 const month = [
   `January`,
   `February`,
@@ -13,8 +14,7 @@ const month = [
   `December`
 ];
 
-
-const createDayListItemMarkup = (item) => {
+const createDayListItemTemplate = (item) => {
   const year = item.date.getFullYear().toString().slice(2);
   const shortMonth = month[item.date.getMonth()].slice(0, 3);
   return (
@@ -24,17 +24,33 @@ const createDayListItemMarkup = (item) => {
       <span class="day__counter">${item.date.getDate()}<span>
       <time class="day__date" datetime="2019-03-18">${shortMonth} ${year}</time>
     </div>
+    <ul class="trip-events__list">
+    </ul>
     </li>
     `
   );
 };
 
+export default class DayListItem {
 
-export const createDayListItemTemplate = (item) => {
-  const listItem = item.map((it) => createDayListItemMarkup(it)).join(`\n`);
-  return (
-    `
-    ${listItem}
-    `
-  );
-};
+  constructor(item) {
+    this._item = item;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createDayListItemTemplate(this._item);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
