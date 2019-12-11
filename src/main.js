@@ -27,7 +27,7 @@ menu.forEach((item) => {
 });
 render(siteControlElement, new SiteFilter(filters).getElement(), RenderPosition.BEFOREEND);
 const siteEventElement = siteEventsElement.querySelector(`.trip-days`);
-const rederList = () => {
+const renderTripsEvents = () => {
   if (days.length > 0) {
     render(siteEventsElement, new SiteSort().getElement(), RenderPosition.AFTERBEGIN);
     days.forEach((day) => {
@@ -68,6 +68,6 @@ const rederList = () => {
   }
 };
 
-rederList();
+renderTripsEvents();
 const siteInfoElement = document.querySelector(`.trip-info`);
 render(siteInfoElement, new SiteInfo(getTotalCoast(totalCoasts)).getElement(), RenderPosition.BEFOREEND);
